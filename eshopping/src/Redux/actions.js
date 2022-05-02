@@ -1,10 +1,29 @@
-// use axios for api call
-import axios from "axios";
+// use axios for api
+// import axios from "axios";
+import { DATA_LOADING, DATA_SUCCESS, DATA_ERROR } from "./actionTypes.js";
 
-function getProductsData() {}
+export const getDataloading = () => ({
+  type: DATA_LOADING,
+});
 
-const sortProducts = () => {};
+export const getDataerror = () => ({
+  type: DATA_ERROR,
+});
 
-const filterProducts = () => {};
+export const getDataSuccess = (payload) => ({
+  type: DATA_SUCCESS,
+  payload,
+});
 
-export { getProductsData, sortProducts, filterProducts };
+export const getProductsData =async(dispatch) => {
+  let res =await fetch(`https://movie-fake-server.herokuapp.com/products`)
+    let data = await res.json()
+
+    dispatch(getDataSuccess(data))
+};
+
+export const sortProducts = () => {};
+
+export const filterProducts = () => {};
+
+// export { getProductsData, sortProducts, filterProducts };
